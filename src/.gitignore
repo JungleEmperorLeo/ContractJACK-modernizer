@@ -1,0 +1,77 @@
+# Only ignore specific Release/Debugs
+NOLF/*/Release
+NOLF/*/Debug
+LT2/lithshared/built/Release
+LT2/lithshared/built/Debug
+CRes.dll
+CShell.dll
+# There's no pre-built libs in Final Release, so just ignore it all
+Final_Release
+*.recipe
+*.opendb
+*.log
+# *.dll
+*.lto
+*.plg
+.vs
+.vscode
+*.db
+*.db*
+*.sdf
+UpgradeLog*.htm
+ART
+*.pdb
+*.obj
+*.tlog
+*tlog/*
+unsuccessfulbuild
+*.sbr
+*.idb
+*.bsc
+*.pch
+*.ilk
+*.exp
+lex.yy.c
+# Some specific libs, we don't need 'em!
+CShell.lib
+ltguimgr.lib
+butemgr.lib
+cryptmgr.lib
+lib_lith.lib
+mfcstub.lib
+regmgr.lib
+object.lib
+clientfx.lib
+ClientShellShared.lib
+ObjectShared.lib
+lib_stdlith.lib
+regmgr32.lib
+# Dlls
+Cshell.dll
+Cres.dll
+Sres.dll
+ClientFX.fxd
+Object.lto
+JServerDir.lib
+JServerDir.dll
+*.lastbuildstate
+*.FileListAbsolute.txt
+*.enc
+*.res
+*.aps
+ServerApp.lib
+NOLF2Srv.exe
+ClientFx.dll
+Autorun*
+*.iobj
+*.ipdb
+*.cache
+TO2EN.lib
+Game/Build
+Assets/Unused Art/*
+Game/packages/*
+
+*nativecodeanalysis.*
+*codeanalysisresultmanifest*
+*.lastcodeanalysissucceeded*
+*.pchast

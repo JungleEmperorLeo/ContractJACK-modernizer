@@ -573,6 +573,9 @@ Accesses the ILTVideoMgr interface.
 
 Used for: Interface.
 */
+    // CJ 1.1 engine has two extra slots here vs the SDK header (position inferred from retail CSHELL.DLL)
+    virtual void _CJPadding1()=0;
+    virtual void _CJPadding2()=0;
     virtual ILTVideoMgr *VideoMgr() = 0;
 
 /*!

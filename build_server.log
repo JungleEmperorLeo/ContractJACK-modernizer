@@ -1,6 +1,0 @@
-
-  Generating animation lexer/parser (flex/bison)...
-cl : command line  warning D9035: option 'Zc:forScope-' has been deprecated and will be removed in a future release [C:\Games\ConJack\Bots\src\Server\Object.vcxproj]
-  BotMgr.cpp
-     Creating library C:\Games\ConJack\Bots\src\Server\built\Final\Object\Object.lib and object C:\Games\ConJack\Bots\src\Server\built\Final\Object\Object.exp
-  Object.vcxproj -> C:\Games\ConJack\Bots\src\Server\built\Final\Object.lto

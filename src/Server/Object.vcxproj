@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Object.lto : the server-side game DLL (ObjectDLL) for the Contract J.A.C.K. Modernizer fork.
+     Generated from the retail SDK's Object.vcproj. Sources are copied into src\Server by
+     setup_server_source.bat (build.bat /server runs it automatically). -->
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Final|Win32">
+      <Configuration>Final</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6C1E3B52-9D0A-4C1B-8B7E-2F5D1A7C9E41}</ProjectGuid>
+    <RootNamespace>Object</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <SpectreMitigation>false</SpectreMitigation>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
+    <OutDir>$(ProjectDir)built\Final\</OutDir>
+    <IntDir>$(ProjectDir)built\Final\Object\</IntDir>
+    <TargetName>Object</TargetName>
+    <TargetExt>.lto</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>Game\ObjectDLL;Game\Shared;Engine\sdk\inc;..\libs\STLPort-STD;..\libs\stdlith;..\libs\butemgr;..\libs\cryptmgr;..\libs\lith;..\libs\mfcstub;..\libs\regmgr;..\Game\Libs\GameSpy;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_NOLFBUILD;WIN32;_WINDOWS;NOPS2;_SERVERBUILD;_FINAL;MEMTRACK_SERVER;NO_PRAGMA_LIBS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)Object.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <AdditionalOptions> /Zm1000 </AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4530;4786;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <PreBuildEvent>
+      <Message>Generating animation lexer/parser (flex/bison)...</Message>
+      <Command>cd /d "$(ProjectDir)Game\ObjectDLL"
+if exist AnimationParse.o if exist AnimationLexSymbols.h if exist AnimationLex.o goto animdone
+..\bison --defines -v --verbose -pyyanimation -oAnimationParse.o AnimationParse.y
+if errorlevel 1 exit /b 1
+if exist AnimationLexSymbols.h del AnimationLexSymbols.h
+ren AnimationParse.o.h AnimationLexSymbols.h
+if exist AnimationParse.o.output del AnimationParse.o.output
+..\flex -Pyyanimation -oAnimationLex.o AnimationLex.l
+if errorlevel 1 exit /b 1
+:animdone
+exit /b 0</Command>
+    </PreBuildEvent>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)Object.lto</OutputFile>
+      <ImportLibrary>$(IntDir)Object.lib</ImportLibrary>
+      <AdditionalDependencies>butemgr.lib;cryptmgr.lib;lib_lith.lib;lib_stdlith.lib;ltmem.lib;mfcstub.lib;regmgr.lib;gamespy.lib;winmm.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Engine\sdk\lib;..\Game\Libs\GameSpy;..\libs\built\Final\ButeMgr;..\libs\built\Final\CryptMgr;..\libs\built\Final\Lib_Lith;..\libs\built\Final\Lib_StdLith;..\libs\built\Final\MFCStub;..\libs\built\Final\RegMgr;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Game\Shared\ActivateTypeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ActiveWorldModel.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AI.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIAssert.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIBrain.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AICentralKnowledgeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIClassFactory.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAbstract.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAbstractSearch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAbstractStimulated.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAbstractTargeted.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAbstractUseObject.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAlarm.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAnimate.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalApprehend.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAssassinate.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttack.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackFromCover.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackfromRandomVantage.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackfromRoofVantage.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackfromVantage.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackFromView.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackMelee.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackProne.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackProp.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackRanged.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalAttackRangedDynamic.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalCatch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalCharge.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalChase.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalCheckBody.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalCover.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalDeflect.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalDisappearReappear.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalDisappearReappearEvasive.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalDistress.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalDramaDeath.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalDrawWeapon.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalExitLevel.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalFlee.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalFollow.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalFollowFootprint.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalGetBackup.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalGoto.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalGuard.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalHolsterWeapon.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalInvestigate.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalLoveKitty.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalLunge.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalMenace.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalMountedFlashlight.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalObstruct.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalPatrol.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalProximityCommand.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalPsychoChase.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalReclassifyToEnemy.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalRespondToAlarm.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalRespondToBackup.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalResurrecting.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalRetreat.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalSearch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalSentryChallenge.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalSentryMark.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalSerumDeath.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalSleep.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalSniper.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalSpecialDamage.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalTail.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalTalk.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIGoalWork.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHuman.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanState.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateApprehend.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateAttackMove.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateAttackProne.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateCatch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateDeflect.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateDisappearReappear.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateLaunch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateObstruct.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateResurrecting.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateSentryChallenge.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStateSniper.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStrategy.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStrategyShootStream.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIHumanStrategyToggleLights.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIInformationVolumeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AimMagnet.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIMovement.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIMovementModifier.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AINode.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AINodeDisturbance.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AINodeGuard.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AINodeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AINodeSensing.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AINodeSniper.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIPath.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIPathKnowledgeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIPathMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIRegion.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIRegionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AISenseRecorderAbstract.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AISenseRecorderGame.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AISounds.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AISpatialRepresentationMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIState.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIStimulusMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AITarget.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AITypes.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIUtils.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIVolume.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIVolumeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AIVolumeNeighbor.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Alarm.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AmmoBox.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AnimationLex.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Game\ObjectDLL\AnimationMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AnimationParse.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Game\ObjectDLL\AnimationParser.cpp" />
+    <ClCompile Include="Game\Shared\Animator.cpp" />
+    <ClCompile Include="Game\ObjectDLL\AnimatorPlayer.cpp" />
+    <ClCompile Include="Game\Shared\AssertMgr.cpp" />
+    <ClCompile Include="Game\Shared\AttachButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Attachments.cpp" />
+    <ClCompile Include="Game\ObjectDLL\BanIPMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Body.cpp" />
+    <ClCompile Include="Game\ObjectDLL\BodyState.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Bombable.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Breakable.cpp" />
+    <ClCompile Include="Game\Shared\ButeListReader.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ButeTools.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Camera.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Character.cpp" />
+    <ClCompile Include="Game\Shared\CharacterAlignment.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CharacterHitBox.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CharacterMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Chassis.cpp" />
+    <ClCompile Include="Game\Shared\ChassisButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ChassisPiece.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ClientLightFX.cpp" />
+    <ClCompile Include="Game\Shared\ClientServerShared.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ClientSFX.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ClientWeaponSFX.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CollectiveRelationMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CommandButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CommandMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CommandObject.cpp" />
+    <ClCompile Include="Game\Shared\CommonUtilities.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Controller.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CoopMissionMgr.cpp" />
+    <ClCompile Include="Game\Shared\CRC32.cpp" />
+    <ClCompile Include="Game\Shared\DamageTypes.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DeathMatchMissionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DeathScene.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DebrisFuncs.cpp" />
+    <ClCompile Include="Game\Shared\DebrisMgr.cpp" />
+    <ClCompile Include="Game\Shared\DebugLine.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DebugLineSystem.cpp" />
+    <ClCompile Include="Game\Shared\DebugNew.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DecisionObject.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DemolitionMissionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Destructible.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DestructibleModel.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Dialogue.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DisplayMeter.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DisplayTimer.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DoomsDayDevice.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DoomsDayMissionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DoomsDayPiece.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Door.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DoorKnob.cpp" />
+    <ClCompile Include="Game\ObjectDLL\DynamicOccluderVolume.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Editable.cpp" />
+    <ClCompile Include="Game\ObjectDLL\EventCounter.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ExitTrigger.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Explosion.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Fire.cpp" />
+    <ClCompile Include="Game\Shared\FXButeMgr.cpp" />
+    <ClCompile Include="Game\Shared\FXStructs.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GadgetTarget.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GadgetTargetMgr.cpp" />
+    <ClCompile Include="Game\Shared\GameAlloc.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GameBase.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GameBaseLite.cpp" />
+    <ClCompile Include="Game\Shared\GameButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GameServerShell.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GameStartPoint.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GearItems.cpp" />
+    <ClCompile Include="Game\Shared\GlobalMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GlobalServerMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GlobalsInit.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Group.cpp" />
+    <ClCompile Include="Game\ObjectDLL\GunMount.cpp" />
+    <ClCompile Include="Game\ObjectDLL\HHWeaponModel.cpp" />
+    <ClCompile Include="Engine\sdk\inc\iltbaseclass.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Game\ObjectDLL\Intelligence.cpp" />
+    <ClCompile Include="Game\ObjectDLL\IntelMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\InventoryButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\JumpVolume.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Key.cpp" />
+    <ClCompile Include="Game\ObjectDLL\KeyData.cpp" />
+    <ClCompile Include="Game\ObjectDLL\KeyFramer.cpp" />
+    <ClCompile Include="Game\ObjectDLL\KeyItem.cpp" />
+    <ClCompile Include="Game\Shared\KeyMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\KeyPad.cpp" />
+    <ClCompile Include="Game\ObjectDLL\LaserTrigger.cpp" />
+    <ClCompile Include="Game\ObjectDLL\LightGroup.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Lightning.cpp" />
+    <ClCompile Include="Game\ObjectDLL\LiteObjectMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Lock.cpp" />
+    <ClCompile Include="Engine\sdk\inc\ltengineobjects.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Engine\sdk\inc\ltmodule.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Engine\sdk\inc\ltobjref.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Engine\sdk\inc\ltquatbase.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Game\ObjectDLL\Mine.cpp" />
+    <ClCompile Include="Game\Shared\MissionButeMgr.cpp" />
+    <ClCompile Include="Game\Shared\ModelButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ModItem.cpp" />
+    <ClCompile Include="Game\ObjectDLL\MusicMgr.cpp" />
+    <ClCompile Include="Game\Shared\NetDefs.cpp" />
+    <ClCompile Include="Game\ObjectDLL\NodeLine.cpp" />
+    <ClCompile Include="Game\ObjectDLL\NoPlayerTrigger.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ObjectiveSprite.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ObjectRelationMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ObjectRemover.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ObjectTemplateMgr.cpp" />
+    <ClCompile Include="Game\Shared\ParsedMsg.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ParticleSystem.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PickupItem.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PlayerLure.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PlayerObj.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PlayerTracker.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PlayerTrigger.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PlayerVehicle.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Point.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PolyGrid.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PolyGridModifier.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PowerArmor.cpp" />
+    <ClCompile Include="Game\Shared\ProfileUtils.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Projectile.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ProjectileTypes.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Prop.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PropType.cpp" />
+    <ClCompile Include="Game\ObjectDLL\PropTypeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\RadarObject.cpp" />
+    <ClCompile Include="Game\Shared\RadarTypeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\RandomSpawner.cpp" />
+    <ClCompile Include="Game\ObjectDLL\RelationButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\RelationMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\RotatingDoor.cpp" />
+    <ClCompile Include="Game\ObjectDLL\RotatingSwitch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\RotatingWorldModel.cpp" />
+    <ClCompile Include="Game\Shared\SaveLoadMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ScaleSprite.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Scanner.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ScatterVolume.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ScmdServer.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ScreenShake.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Searchable.cpp" />
+    <ClCompile Include="Game\Shared\SearchItemMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SearchLight.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SearchProp.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SecurityCamera.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerAssetMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerMark.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerMissionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerSaveLoadMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerSoundFX.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerSoundMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerSpecialFX.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerTrackedNodeContext.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerTrackedNodeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\ServerUtilities.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SFXFuncs.cpp" />
+    <ClCompile Include="Game\Shared\SharedFXStructs.cpp" />
+    <ClCompile Include="Game\Shared\SharedMission.cpp" />
+    <ClCompile Include="Game\Shared\SharedMovement.cpp" />
+    <ClCompile Include="Game\Shared\SharedScoring.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SinglePlayerMissionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Skills.cpp" />
+    <ClCompile Include="Game\Shared\SkillsButeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SlidingDoor.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SlidingSwitch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SlidingWorldModel.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SnowVolume.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SoundButeFX.cpp" />
+    <ClCompile Include="Game\Shared\SoundButeMgr.cpp" />
+    <ClCompile Include="Game\Shared\SoundFilterMgr.cpp" />
+    <ClCompile Include="Game\Shared\SoundMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Sparam.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Spawner.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Speaker.cpp" />
+    <ClCompile Include="Game\ObjectDLL\SpinningWorldModel.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Sprinkles.cpp" />
+    <ClCompile Include="Game\Shared\stacktrace.cpp" />
+    <ClCompile Include="Game\ObjectDLL\StartupCommand.cpp" />
+    <ClCompile Include="Game\ObjectDLL\CJ71Options.cpp" />
+    <ClCompile Include="Game\ObjectDLL\BotMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\BotNav.cpp" />
+    <ClCompile Include="Game\ObjectDLL\BotPlayer.cpp" />
+    <ClCompile Include="Game\ObjectDLL\BotBrain.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Stdafx.cpp"><PrecompiledHeader>Create</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Game\ObjectDLL\Steam.cpp" />
+    <ClCompile Include="Game\Shared\SurfaceFunctions.cpp" />
+    <ClCompile Include="Game\Shared\SurfaceMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Switch.cpp" />
+    <ClCompile Include="Game\ObjectDLL\TeamDeathMatchMissionMgr.cpp" />
+    <ClCompile Include="Game\Shared\TeamMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\TeleportPoint.cpp" />
+    <ClCompile Include="Game\Shared\TemplateList.cpp" />
+    <ClCompile Include="Game\ObjectDLL\TextureFX.cpp" />
+    <ClCompile Include="Game\Shared\TO2MissionButeMgr.cpp" />
+    <ClCompile Include="Game\Shared\TrackedNode.cpp" />
+    <ClCompile Include="Game\Shared\TrackedNodeContext.cpp" />
+    <ClCompile Include="Game\Shared\TrackedNodeControlFn.cpp" />
+    <ClCompile Include="Game\Shared\TrackedNodeMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\TransitionAggregate.cpp" />
+    <ClCompile Include="Game\ObjectDLL\TransitionArea.cpp" />
+    <ClCompile Include="Game\ObjectDLL\TransitionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Trigger.cpp" />
+    <ClCompile Include="Game\Shared\TriggerTypeMgr.cpp" />
+    <ClCompile Include="Game\Shared\UberAssert.cpp" />
+    <ClCompile Include="Game\Shared\VehicleButeMgr.cpp" />
+    <ClCompile Include="Game\Shared\VersionMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\VolumeBrush.cpp" />
+    <ClCompile Include="Game\ObjectDLL\VolumeBrushTypes.cpp" />
+    <ClCompile Include="Game\ObjectDLL\VolumeEffect.cpp" />
+    <ClCompile Include="Game\Shared\WaveFn.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Weapon.cpp" />
+    <ClCompile Include="Game\ObjectDLL\WeaponItems.cpp" />
+    <ClCompile Include="Game\Shared\WeaponMgr.cpp" />
+    <ClCompile Include="Game\ObjectDLL\Weapons.cpp" />
+    <ClCompile Include="Game\Shared\WinUtil.cpp" />
+    <ClCompile Include="Game\ObjectDLL\WorldModel.cpp" />
+    <ClCompile Include="Game\ObjectDLL\WorldModelDebris.cpp" />
+    <ClCompile Include="Game\ObjectDLL\WorldProperties.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

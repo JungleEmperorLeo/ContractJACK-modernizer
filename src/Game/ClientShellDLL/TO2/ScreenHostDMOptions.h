@@ -1,0 +1,62 @@
+// ----------------------------------------------------------------------- //
+//
+// MODULE  : ScreenHostDMOptions.h
+//
+// PURPOSE : Interface screen for hosting multi player games
+//
+// (c) 1999-2002 Monolith Productions, Inc.  All Rights Reserved
+//3
+// ----------------------------------------------------------------------- //
+
+
+#ifndef _SCREEN_HOST_DM_OPTIONS_H_
+#define _SCREEN_HOST_DM_OPTIONS_H_
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
+#include "BaseScreen.h"
+#include "NetDefs.h"
+
+class CScreenHostDMOptions : public CBaseScreen
+{
+public:
+	CScreenHostDMOptions();
+	virtual ~CScreenHostDMOptions();
+
+	// Build the screen
+    LTBOOL   Build();
+
+    void    OnFocus(LTBOOL bFocus);
+
+
+protected:
+
+
+protected:
+    uint32  OnCommand(uint32 dwCommand, uint32 dwParam1, uint32 dwParam2);
+
+	int			m_nMaxPlayers;
+	int			m_nRunSpeed;
+	int			m_nScoreLimit;
+	int			m_nTimeLimit;
+	int			m_nRounds;
+
+	int			m_nFragScore;
+
+	LTBOOL		m_bWeaponsStay;
+
+	int			m_nBots;
+	int			m_nBotSkill;
+	uint8		m_nBotSkillIdx;
+	int			m_nBotsApplied;
+	uint8		m_nSkillIdxApplied;
+	CLTGUITextCtrl*	m_pSpawnBot;
+	CLTGUITextCtrl*	m_pRemoveBot;	// Bot count the running game already has.	// 0 = skill 1 (normal) ... 2 = skill 3
+
+	CLTGUISlider*	m_pMaxPlayers;
+
+};
+
+#endif // _SCREEN_HOST_DM_OPTIONS_H_

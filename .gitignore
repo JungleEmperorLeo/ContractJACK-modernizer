@@ -1,0 +1,7 @@
+build*.log
+stage/
+cache/
+src/Game/built/
+*.o
+*.obj
+*.lto

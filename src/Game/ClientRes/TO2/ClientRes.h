@@ -9663,8 +9663,6 @@
 #define IDS_HELP_RAGDOLLS               2337
 #define IDS_UNLOCK_FPS                  2338
 #define IDS_HELP_UNLOCK_FPS             2339
-#define IDS_WIDE_HELMET                 2340
-#define IDS_HELP_WIDE_HELMET            2341
 #define IDS_TITLE_JUKEBOX               33599
 #define IDS_UNUSED_33598                33600
 #define IDS_JUKEBOX_THEMES              33601

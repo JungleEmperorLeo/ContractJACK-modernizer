@@ -29,6 +29,10 @@ xcopy /e /i /y /q "%BASE%\Engine\sdk\inc" "%DST%\Engine\sdk\inc" >nul || goto :c
 xcopy /e /i /y /q "%BASE%\Engine\sdk\lib" "%DST%\Engine\sdk\lib" >nul || goto :copyfail
 copy /y "%BASE%\Game\bison.exe" "%DST%\Game\bison.exe" >nul || goto :copyfail
 copy /y "%BASE%\Game\flex.exe"  "%DST%\Game\flex.exe"  >nul || goto :copyfail
+if exist "%HERE%\src\ServerMods\Game" (
+  echo         Applying server mods from src\ServerMods ...
+  xcopy /e /y /q "%HERE%\src\ServerMods\Game" "%DST%\Game" >nul || goto :copyfail
+)
 echo         Done.
 exit /b 0
 

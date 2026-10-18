@@ -475,8 +475,6 @@ Used for: Networking
 
 \return \b LT_NOTFOUND if that ping ID is unknown, LT_OK otherwise.
 */
-    // CJ 1.1 engine has one extra slot here (matched against the retail engine's vtable)
-    virtual void _CJPadding1()=0;
     virtual LTRESULT RemovePing(uint32 nPingID) = 0;
 
 /*!
@@ -492,8 +490,6 @@ Gets the position of the specified object
 Used for: Object.
 */
     virtual LTRESULT GetObjectPos(HLOCALOBJ hObj, LTVector *pPos) = 0;
-    // CJ 1.1 engine has one extra slot here (matched against the retail engine's vtable)
-    virtual void _CJPadding2()=0;
 
 /*!
 \param hObj Model instance
