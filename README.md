@@ -1,4 +1,4 @@
-# ContractJack-modernizer
+# ContractJACK-modernizer
 Contract J.A.C.K. Modernizer: widescreen/resolution support, restored multiplayer, and **bot support** (UT-style bots with adaptive skill, chat and taunts).
 
 ![Main menu](docs/menu.png)
