@@ -1,0 +1,119 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+trigger:
+- master
+
+pool:
+  vmImage: "windows-2019"
+
+variables:
+  solution: 'Game/TO2-Game.sln'
+  buildPlatform: 'x86'
+  buildConfiguration: 'Final'
+
+##################################
+# Build!
+##################################
+steps:
+- task: VSBuild@1
+  inputs:
+    solution: 'Game\\TO2-Game.sln'
+    vsVersion: '16.0'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+##################################
+# Copy over our mod dlls/files
+##################################
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '.\\'
+    flattenFolders: true
+    Contents: |
+      Game\\built\\Final\\ClientFxDLL\\ClientFx.fxd
+      Game\\built\\Final\\ClientRes\\TO2\\CRes.dll
+      Game\\built\\Final\\ClientShellDLL\\TO2\\CShell.dll
+      Game\\built\\Final\\ObjectDll\\TO2\\Object.lto
+      Game\\built\\Final\\ServerRes\\TO2\\SRes.dll
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts\\Modernizer'
+    
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'Assets\\Mod'
+    Contents: '**'
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts\\Modernizer'
+
+##################################
+# Copy over some Game-level files
+##################################
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '.\\'
+    flattenFolders: true
+    Contents: |
+      Game\\built\\Final\\ServerApp\\NOLF2Srv.exe
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts'
+
+# Our custom Dinput8.dll and modified Lithtech.exe
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'Assets'
+    Contents: |
+      controls.cfg
+      Lithtech.exe
+      JServerInfo.txt
+      ModernizerReadme.txt
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts'
+
+# Profile Stuff
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'Assets\\Profiles'
+    Contents: |
+      Default.prf
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts\\Profiles'
+
+# Open Source Licenses
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: ''
+    Contents: |
+      osslicenses.txt
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts'
+
+# SDL2
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'LIBS\\SDL2-2.0.12\\lib\\x86\\'
+    Contents: 'SDL2.dll'
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts'
+
+# Jake's Server Directory
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'Game\\Release'
+    Contents: 'JServerDir.dll'
+    TargetFolder: '$(Pipeline.Workspace)\\Artifacts'
+
+##################################
+# Setup and rez our mod!
+##################################
+- task: CmdLine@2
+  inputs:
+    script: 'mkdir $(Pipeline.Workspace)\\Artifacts\\Custom\\Mods\\Modernizer'
+
+- task: CmdLine@2
+  inputs:
+    script: 'Tools\\lithrez.exe c $(Pipeline.Workspace)\\Artifacts\\Custom\\Mods\\Modernizer\\Modernizer.rez $(Pipeline.Workspace)\\Artifacts\\Modernizer'
+
+##################################
+# Publish
+##################################
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)\\Artifacts'
+    artifact: '$(buildConfiguration) Files'

@@ -1,0 +1,3 @@
+@echo off
+echo This old script is obsolete. Running ..\build.bat instead...
+call "%~dp0..\build.bat"
