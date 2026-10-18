@@ -3,6 +3,7 @@ Contract J.A.C.K. Modernizer: widescreen/resolution support, restored multiplaye
 
 ![Main menu](docs/menu.png)
 ![Bot deathmatch scoreboard](docs/scoreboard.png)
+![Widescreen gameplay](docs/widescreen.png)
 
 ## Building
 1. Put this folder inside your Contract J.A.C.K. install (next to `Tools\Source`).
