@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Localized Files">
+      <UniqueIdentifier>{8302f114-0653-468f-9ea2-d12cf570e322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Localized Files\DE">
+      <UniqueIdentifier>{9e4e3fd3-8bce-427a-82ee-4b6c4e02fe9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Localized Files\EN">
+      <UniqueIdentifier>{dcee3dc1-2e23-4360-8db4-c2992cd8cdfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Localized Files\ES">
+      <UniqueIdentifier>{b76d8819-049e-4dc0-8f40-67cf10d27e5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Localized Files\IT">
+      <UniqueIdentifier>{078a5c34-60fb-45d4-978f-45d26d967424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Localized Files\FR">
+      <UniqueIdentifier>{c870a365-7940-473b-817b-a06d2a8c2d75}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bitmap1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ClientRes.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
