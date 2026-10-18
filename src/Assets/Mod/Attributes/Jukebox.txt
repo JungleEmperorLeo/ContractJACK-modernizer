@@ -1,0 +1,116 @@
+/*
+** Jukebox Attribute File - Contract J.A.C.K. version for the Modernizer port
+** Track groups come from the music control files in Sound.rez.
+*/
+
+[Theme0]
+Name            = "Theme Songs"
+Directory       = ""
+ControlFile     = ""
+RequiresGOTY    = FALSE
+IsMp3           = TRUE
+
+[Theme1]
+Name            = "Italy"
+Directory       = "ITALY"
+ControlFile     = "ITALY.txt"
+RequiresGOTY    = FALSE
+IsMp3           = FALSE
+
+[Theme2]
+Name            = "Island"
+Directory       = "ISLAND"
+ControlFile     = "ISLANDL.txt"
+RequiresGOTY    = FALSE
+IsMp3           = FALSE
+
+[Theme3]
+Name            = "Siberia"
+Directory       = "SIBERIA"
+ControlFile     = "SIBERIA.txt"
+RequiresGOTY    = FALSE
+IsMp3           = FALSE
+
+[Theme4]
+Name            = "Moon"
+Directory       = "MOON"
+ControlFile     = "MOON.txt"
+RequiresGOTY    = FALSE
+IsMp3           = FALSE
+
+[Theme5]
+Name            = "Title Screen"
+Directory       = "JACKTITLE"
+ControlFile     = "JACKTITLE.txt"
+RequiresGOTY    = FALSE
+IsMp3           = FALSE
+
+[Song0]
+Name="The Operative (NOLF theme)"
+Theme=0
+Path="MUSIC/NOLF1THEME.WAV"
+
+[Song1]
+Name="Credits Theme"
+Theme=0
+Path="MUSIC/CREDITSTHEME.WAV"
+
+[Song2]
+Name="1. Exploring"
+IntensityLevel=2
+Theme=1
+
+[Song3]
+Name="3. Combat"
+IntensityLevel=41
+Theme=1
+
+[Song4]
+Name="1. Exploring"
+IntensityLevel=2
+Theme=2
+
+[Song5]
+Name="2. Alert"
+IntensityLevel=21
+Theme=2
+
+[Song6]
+Name="3. Combat"
+IntensityLevel=31
+Theme=2
+
+[Song7]
+Name="1. Exploring"
+IntensityLevel=2
+Theme=3
+
+[Song8]
+Name="2. Alert"
+IntensityLevel=31
+Theme=3
+
+[Song9]
+Name="3. Combat"
+IntensityLevel=51
+Theme=3
+
+[Song10]
+Name="1. Exploring"
+IntensityLevel=2
+Theme=4
+
+[Song11]
+Name="2. Alert"
+IntensityLevel=10
+Theme=4
+
+[Song12]
+Name="3. Combat"
+IntensityLevel=31
+Theme=4
+
+[Song13]
+Name="Main Menu"
+IntensityLevel=2
+Theme=5
